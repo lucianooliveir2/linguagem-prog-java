@@ -18,7 +18,7 @@ public class BancoDeDados {
   public void luciano_conectar() {
     String servidor = "jdbc:mysql://localhost:3306/agenda";
     String usuario = "root";
-    String senha = "Coxinha123@";
+    String senha = "root";
     String driver = "com.mysql.cj.jdbc.Driver";
 
     try{
