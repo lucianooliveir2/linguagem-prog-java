@@ -15,7 +15,7 @@ public class BancoDeDados {
   private ResultSet resultset = null;
 
 
-  public void conectar() {
+  public void luciano_conectar() {
     String servidor = "jdbc:mysql://localhost:3306/agenda";
     String usuario = "root";
     String senha = "Coxinha123@";
@@ -31,7 +31,7 @@ public class BancoDeDados {
     }
   }
 
-  public void desconectar(){
+  public void luciano_desconectar(){
     try{
       this.connection.close();
       System.out.println("Desconectado com sucesso.....");
@@ -40,7 +40,7 @@ public class BancoDeDados {
     }
   }
 
-  public void inserir(String nome, String email, String telefone) {
+  public void luciano_inserir(String nome, String email, String telefone) {
     try {
       String query = "INSERT INTO agenda.cadastro (nome, email, telefone) VALUES ('" + nome + "','" + email + "','" + telefone + "')";
       this.statement.execute(query);
@@ -50,7 +50,7 @@ public class BancoDeDados {
     }
   }
 
-  public void listarTudo(){
+  public void luciano_listarTudo(){
     try {
       String query = "SELECT * FROM agenda.cadastro ORDER BY id ASC";
       this.resultset = this.statement.executeQuery(query);
@@ -63,7 +63,7 @@ public class BancoDeDados {
     }
   }
 
-  public void pesquisar(String id){
+  public void luciano_pesquisar(String id){
     try {
       String query = "SELECT * FROM agenda.cadastro WHERE id = " + id + " ORDER BY id ASC;";
       this.resultset = this.statement.executeQuery(query);
@@ -75,7 +75,7 @@ public class BancoDeDados {
     }
   }
 
-  public void alterar(String id, String nome, String email, String telefone) {
+  public void luciano_alterar(String id, String nome, String email, String telefone) {
     try {
       String query = String.format("UPDATE agenda.cadastro SET nome='%s', email='%s', telefone = '%s' WHERE id = %s;", nome, email, telefone, id);
       // String query = "UPDATE agenda.cadastro SET nome=juvenal, email=juvenal@juvenal.com WHERE id=2";
@@ -89,7 +89,7 @@ public class BancoDeDados {
     }
   }
 
-  public void excluir(String id) {
+  public void luciano_excluir(String id) {
     try {
       String query = "DELETE FROM agenda.cadastro WHERE id = " + id + ";";
       this.statement.execute(query);
