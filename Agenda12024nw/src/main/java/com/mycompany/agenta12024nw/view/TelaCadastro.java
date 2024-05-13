@@ -34,7 +34,7 @@ public class TelaCadastro extends javax.swing.JFrame {
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
-        
+
         initComponents();
     }
 
@@ -329,11 +329,11 @@ public class TelaCadastro extends javax.swing.JFrame {
             sqlConn = DriverManager.getConnection(conn, username, password);
             pst = sqlConn.prepareStatement("SELECT * FROM Cadastro");
             rs = pst.executeQuery();
-            
+
             // Limpa a tabela
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
+
             // Preenche a tabela com os dados do banco de dados
             while (rs.next()) {
                 Object[] row = {
@@ -348,7 +348,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             TableModel RecordTable = jTable1.getModel();
@@ -400,10 +400,14 @@ public class TelaCadastro extends javax.swing.JFrame {
             pst.setString(3, jTextField4.getText());
             pst.setString(4, jTextField1.getText());
 
-            pst.executeUpdate();
+            if (!jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty() && !jTextField4.getText().isEmpty()) {
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso!");
+                this.limpar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos");
+            }
 
-            JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso!");
-            this.limpar();
         } catch (ClassNotFoundException | SQLException ex) {
             java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -440,7 +444,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaCadastro().setVisible(true);
-                
+
             }
         });
     }
